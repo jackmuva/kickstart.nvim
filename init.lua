@@ -42,8 +42,7 @@ What is Kickstart?
     - (or HTML version): https://neovim.io/doc/user/lua-guide.html
 
 Kickstart Guide:
-
-  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
+TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
 
     If you don't know what this means, type the following:
       - <escape key>
@@ -354,6 +353,7 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'burntsushi/ripgrep' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -397,6 +397,8 @@ require('lazy').setup({
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'live_grep')
+      pcall(require('telescope').load_extension, 'live_grep_args')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
