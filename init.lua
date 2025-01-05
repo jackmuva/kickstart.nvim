@@ -561,7 +561,6 @@ require('lazy').setup({
             vim.lsp.buf.declaration()
           end, '[G]oto [D]eclaration in New Tab')
 
-          map('<leader>cd', vim.lsp.buf.hover, '[C]ode [D]ocumentation')
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
@@ -620,10 +619,6 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      local on_attach = function(_, bufnr)
-        local opts = { noremap = true, silent = true }
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-      end
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -644,11 +639,10 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = { on_attach = on_attach },
-        tailwindcss = { on_attach = on_attach },
+        ts_ls = {},
+        tailwindcss = {},
 
         lua_ls = {
-          on_attach = on_attach,
           -- cmd = {...},
           -- filetypes = { ...},
           -- cmd = { ... },
