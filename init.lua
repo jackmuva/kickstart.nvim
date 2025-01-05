@@ -439,24 +439,6 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'ThePrimeagen/harpoon',
-    branch = 'harpoon2',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      local harpoon = require 'harpoon'
-      harpoon:setup()
-
-      vim.keymap.set('n', '<leader>a', function()
-        harpoon:list():add()
-      end, { desc = '[A]dd to harppon' })
-
-      vim.keymap.set('n', '<C-l>', function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end, { desc = '[l]ist harpoon' })
-    end,
-  },
-
   -- LSP Plugins
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -576,6 +558,7 @@ require('lazy').setup({
             vim.lsp.buf.declaration()
           end, '[G]oto [D]eclaration in New Tab')
 
+          map('<leader>cd', vim.lsp.buf.hover, '[C]ode [D]ocumentation')
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
@@ -868,8 +851,6 @@ require('lazy').setup({
     end,
   },
 
-  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
-
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -974,7 +955,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
