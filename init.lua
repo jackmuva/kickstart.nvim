@@ -560,11 +560,14 @@ require('lazy').setup({
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          -- map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
-          map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          -- map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          map('grD', function()
+            vim.cmd 'tab split' -- Opens a new tab
+            vim.lsp.buf.declaration()
+          end, '[G]oto [D]eclaration in New Tab')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
